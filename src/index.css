@@ -1,0 +1,314 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Premium Brand Colors */
+  --accent-gold: #00FFA3;
+  /* New Logo Green */
+  --accent-platinum: #E5E4E2;
+  --accent-blue: #0A192F;
+  --accent-blue-vibrant: #38BDF8;
+
+  /* Trading Colors */
+  --trading-green: #00FF88;
+  --trading-green-dim: #00CC6A;
+  --trading-red: #FF3366;
+  --trading-red-dim: #CC2952;
+  --trading-cyan: #00F3FF;
+  --trading-amber: #FFB800;
+
+  /* Background */
+  --bg-primary: #020204;
+  --bg-secondary: #08080a;
+  --bg-tertiary: #0D0D0F;
+  --bg-glass: rgba(255, 255, 255, 0.02);
+  --bg-terminal: rgba(0, 255, 136, 0.03);
+
+  /* Text */
+  --text-primary: #FFFFFF;
+  --text-secondary: #94A3B8;
+  --text-terminal: #00FF88;
+
+  /* Borders */
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-glow: rgba(0, 255, 163, 0.3);
+
+  /* Fonts */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Utility Classes */
+.font-mono {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: var(--font-sans);
+}
+
+/* Premium Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-gold);
+}
+
+/* Utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-platinum) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-blue {
+  background: linear-gradient(135deg, #fff 0%, var(--accent-blue-vibrant) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* High-Tech Effects */
+@keyframes glow-pulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(0, 255, 163, 0.2), 0 0 10px rgba(0, 255, 163, 0.1);
+  }
+
+  50% {
+    box-shadow: 0 0 20px rgba(0, 255, 163, 0.4), 0 0 30px rgba(0, 255, 163, 0.2);
+  }
+}
+
+@keyframes scan-line {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes gradient-shift {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes neon-flicker {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Scan Lines Overlay */
+.scan-lines::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
+  animation: scan-line 8s linear infinite;
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Glow Border */
+.glow-border {
+  position: relative;
+  border: 1px solid rgba(0, 255, 163, 0.3);
+  box-shadow:
+    0 0 10px rgba(0, 255, 163, 0.1),
+    inset 0 0 10px rgba(0, 255, 163, 0.05);
+}
+
+.glow-border-green {
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  box-shadow:
+    0 0 15px rgba(0, 255, 136, 0.2),
+    inset 0 0 10px rgba(0, 255, 136, 0.05);
+}
+
+/* Ambient Glow */
+.ambient-glow::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background: radial-gradient(circle, rgba(0, 255, 163, 0.1) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Holographic Effect */
+.holographic {
+  background: linear-gradient(135deg,
+      rgba(0, 255, 136, 0.05) 0%,
+      rgba(56, 189, 248, 0.05) 25%,
+      rgba(0, 255, 163, 0.05) 50%,
+      rgba(229, 228, 226, 0.05) 75%,
+      rgba(0, 255, 136, 0.05) 100%);
+  background-size: 200% 200%;
+  animation: gradient-shift 10s ease infinite;
+}
+
+/* Tech Grid Background */
+.tech-grid {
+  background-image:
+    linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Neon Text */
+.neon-text {
+  text-shadow:
+    0 0 5px currentColor,
+    0 0 10px currentColor,
+    0 0 20px currentColor;
+  animation: neon-flicker 3s infinite;
+}
+
+/* Button Redesign - Shine Effect */
+.btn-shine {
+  /* Adapted to Spring Green Schema */
+  /* Gradient: Dark Green -> Bright Green -> Dark Green */
+  background: linear-gradient(to right, #003322, #00FFA3, #003322, #003322, #00FFA3, #003322);
+  background-size: 250%;
+  background-position: left;
+  color: #00FFA3;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: 1s;
+  overflow: hidden;
+  border: none;
+  border-radius: 9999px;
+  /* Rounded full for consistency with previous pill shape, or 10px if strictly following user */
+  padding: 1px;
+  /* Create the border effect */
+}
+
+/* Inner Container mimicking ::before content logic but relying on text being children */
+.btn-shine::before {
+  position: absolute;
+  content: "";
+  top: 1px;
+  left: 1px;
+  right: 1px;
+  bottom: 1px;
+  background-color: rgba(2, 2, 4, 0.95);
+  /* High contrast dark bg */
+  border-radius: 9999px;
+  /* Match parent */
+  z-index: 1;
+  transition-duration: 1s;
+}
+
+.btn-shine span,
+.btn-shine p,
+.btn-shine a {
+  position: relative;
+  z-index: 2;
+  /* Text on top */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-shine:hover {
+  background-position: right;
+  transition-duration: 1s;
+  box-shadow: 0 0 20px rgba(0, 255, 163, 0.4);
+  /* Added glow on hover */
+}
+
+.btn-shine:hover::before {
+  background-position: right;
+  transition-duration: 1s;
+  background-color: rgba(2, 2, 4, 0.8);
+  /* Slightly lighter on hover */
+}
+
+.btn-shine:active {
+  transform: scale(0.95);
+}
