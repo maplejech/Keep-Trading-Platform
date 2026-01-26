@@ -112,7 +112,7 @@ const Footer = () => {
                             <li>
                                 <a href="#" className="hover:text-[var(--accent-gold)] transition-colors flex items-center gap-2">
                                     <span className="text-[var(--trading-green)]">{'>'}</span>
-                                    Contact
+                                    Press & Media
                                 </a>
                             </li>
                         </ul>
@@ -143,18 +143,24 @@ const Footer = () => {
                         </ul>
 
                         {/* Social Links */}
-                        <div className="flex gap-4">
-                            <a href="#" className="text-[var(--text-secondary)] hover:text-[var(--trading-green)] transition-colors">
+                        <div className="flex gap-4 mb-6">
+                            <a href="https://x.com/keeptrader" target="_blank" rel="noopener noreferrer" className="text-[var(--text-secondary)] hover:text-[var(--trading-green)] transition-colors">
                                 <FaTwitter size={18} />
                             </a>
-                            <a href="#" className="text-[var(--text-secondary)] hover:text-[var(--trading-green)] transition-colors">
+                            <a href="https://www.linkedin.com/company/keeptrading" target="_blank" rel="noopener noreferrer" className="text-[var(--text-secondary)] hover:text-[var(--trading-green)] transition-colors">
                                 <FaLinkedin size={18} />
                             </a>
-                            <a href="#" className="text-[var(--text-secondary)] hover:text-[var(--trading-green)] transition-colors">
-                                <FaTelegram size={18} />
+                        </div>
+
+                        {/* Contact Emails */}
+                        <div className="flex flex-col gap-2">
+                            <a href="mailto:partnership@keep.trading" className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors flex items-center gap-2">
+                                <span className="text-[var(--trading-green)]">@</span>
+                                partnership@keep.trading
                             </a>
-                            <a href="#" className="text-[var(--text-secondary)] hover:text-[var(--trading-green)] transition-colors">
-                                <FaGithub size={18} />
+                            <a href="mailto:info@keep.trading" className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors flex items-center gap-2">
+                                <span className="text-[var(--trading-green)]">@</span>
+                                info@keep.trading
                             </a>
                         </div>
                     </div>
