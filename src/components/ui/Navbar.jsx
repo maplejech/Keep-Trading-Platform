@@ -33,7 +33,7 @@ const Navbar = () => {
         >
             <div className={`flex justify-between items-center ${isScrolled ? 'gap-8' : ''}`}>
                 {/* Elegant Logo */}
-                <div className={`h-8 md:h-10 cursor-pointer select-none transition-all duration-500 ${isScrolled ? 'scale-90' : 'scale-100'}`}>
+                <div className={`h-12 md:h-16 cursor-pointer select-none transition-all duration-500 ${isScrolled ? 'scale-90' : 'scale-100'}`}>
                     <img src="/logo.png" alt="KEEP TRADING" className="h-full w-auto object-contain" />
                 </div>
 
