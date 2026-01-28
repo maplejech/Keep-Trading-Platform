@@ -128,9 +128,9 @@ const useCounter = (end, duration = 2000) => {
 
 const WhatDefinesUs = () => {
     const containerRef = useRef();
-    const [uptimeCount] = useCounter(99.99);
-    const [volumeCount] = useCounter(8.4);
-    const [ordersCount] = useCounter(142);
+    const [uptimeCount] = useCounter(99.5);
+    const [volumeCount] = useCounter(1.8);
+    const [ordersCount] = useCounter(850);
 
     useGSAP(() => {
         gsap.fromTo('.principle-card',
