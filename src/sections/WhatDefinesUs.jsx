@@ -92,13 +92,14 @@ const MarketTicker = () => {
 // Counter Animation Hook
 const useCounter = (end, duration = 2000) => {
     const [count, setCount] = useState(0);
-    const countRef = useRef(null);
+    const elementRef = useRef(null);
+    const hasStartedRef = useRef(false);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
-                if (entry.isIntersecting && !countRef.current) {
-                    countRef.current = true;
+                if (entry.isIntersecting && !hasStartedRef.current) {
+                    hasStartedRef.current = true;
                     let start = 0;
                     const increment = end / (duration / 16);
 
@@ -108,7 +109,7 @@ const useCounter = (end, duration = 2000) => {
                             setCount(end);
                             clearInterval(timer);
                         } else {
-                            setCount(Math.floor(start));
+                            setCount(start);
                         }
                     }, 16);
                 }
@@ -116,21 +117,21 @@ const useCounter = (end, duration = 2000) => {
             { threshold: 0.5 }
         );
 
-        if (countRef.current) {
-            observer.observe(countRef.current);
+        if (elementRef.current) {
+            observer.observe(elementRef.current);
         }
 
         return () => observer.disconnect();
     }, [end, duration]);
 
-    return [count, countRef];
+    return [count, elementRef];
 };
 
 const WhatDefinesUs = () => {
     const containerRef = useRef();
-    const [uptimeCount] = useCounter(99.5);
-    const [volumeCount] = useCounter(1.8);
-    const [ordersCount] = useCounter(850);
+    const [uptimeCount, uptimeRef] = useCounter(99.5);
+    const [volumeCount, volumeRef] = useCounter(1.8);
+    const [ordersCount, ordersRef] = useCounter(850);
 
     useGSAP(() => {
         gsap.fromTo('.principle-card',
@@ -150,7 +151,7 @@ const WhatDefinesUs = () => {
     }, { scope: containerRef });
 
     return (
-        <section ref={containerRef} className="relative py-20 bg-[var(--bg-primary)] overflow-hidden scan-lines tech-grid">
+        <section id="about" ref={containerRef} className="relative py-20 bg-[var(--bg-primary)] overflow-hidden scan-lines tech-grid">
             {/* Market Ticker */}
             <MarketTicker />
 
@@ -190,7 +191,7 @@ const WhatDefinesUs = () => {
 
                 {/* Live Metrics Dashboard */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
-                    <div className="bg-[var(--bg-tertiary)] glow-border-green p-6 holographic backdrop-blur-sm relative overflow-hidden group">
+                    <div ref={uptimeRef} className="bg-[var(--bg-tertiary)] glow-border-green p-6 holographic backdrop-blur-sm relative overflow-hidden group">
                         <div className="absolute inset-0 bg-gradient-to-br from-[var(--trading-green)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         <div className="relative">
                             <div className="flex items-center justify-between mb-2">
@@ -202,7 +203,7 @@ const WhatDefinesUs = () => {
                         </div>
                     </div>
 
-                    <div className="bg-[var(--bg-tertiary)] glow-border p-6 holographic backdrop-blur-sm relative overflow-hidden group">
+                    <div ref={volumeRef} className="bg-[var(--bg-tertiary)] glow-border p-6 holographic backdrop-blur-sm relative overflow-hidden group">
                         <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-gold)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         <div className="relative">
                             <div className="flex items-center justify-between mb-2">
@@ -214,14 +215,14 @@ const WhatDefinesUs = () => {
                         </div>
                     </div>
 
-                    <div className="bg-[var(--bg-tertiary)] glow-border p-6 holographic backdrop-blur-sm relative overflow-hidden group">
+                    <div ref={ordersRef} className="bg-[var(--bg-tertiary)] glow-border p-6 holographic backdrop-blur-sm relative overflow-hidden group">
                         <div className="absolute inset-0 bg-gradient-to-br from-[var(--trading-cyan)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         <div className="relative">
                             <div className="flex items-center justify-between mb-2">
                                 <span className="text-[var(--text-secondary)] font-mono text-xs uppercase">Active Orders/s</span>
                                 <div className="w-1.5 h-1.5 bg-[var(--trading-green)] rounded-full shadow-[0_0_8px_rgba(0,255,136,0.8)] animate-pulse"></div>
                             </div>
-                            <div className="text-4xl font-mono text-white mb-1 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">{ordersCount}K</div>
+                            <div className="text-4xl font-mono text-white mb-1 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">{Math.floor(ordersCount)}K</div>
                             <div className="text-xs text-[var(--trading-green)] font-mono">+8.9% vs Last Hour</div>
                         </div>
                     </div>
