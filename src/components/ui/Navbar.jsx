@@ -54,9 +54,14 @@ const Navbar = () => {
 
                 {/* Call to Action */}
                 <div className="hidden md:block">
-                    <button className="btn-shine w-36 h-10 text-[10px] font-bold uppercase tracking-widest">
+                    <a
+                        href="https://app.keep.trading/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-shine w-36 h-10 text-[10px] font-bold uppercase tracking-widest inline-flex items-center justify-center"
+                    >
                         <span>Client Access</span>
-                    </button>
+                    </a>
                 </div>
 
                 {/* Mobile Toggle */}
@@ -78,9 +83,15 @@ const Navbar = () => {
                             {link.name}
                         </a>
                     ))}
-                    <button className="btn-shine w-full py-3 mt-2 text-[10px] font-bold uppercase tracking-widest">
+                    <a
+                        href="https://app.keep.trading/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-shine w-full py-3 mt-2 text-[10px] font-bold uppercase tracking-widest inline-flex items-center justify-center"
+                        onClick={() => setIsOpen(false)}
+                    >
                         <span>Client Access</span>
-                    </button>
+                    </a>
                 </div>
             )}
         </nav>
